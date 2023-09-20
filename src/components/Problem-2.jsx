@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ModalA from "./Modals/ModalA";
 import ModalB from "./Modals/ModalB";
 
 const Problem2 = () => {
   const [showModalA, setShowModalA] = useState(false);
   const [showModalB, setShowModalB] = useState(false);
+  const [contacts, setContacts] = useState([]);
 
   const handleShowModalA = () => setShowModalA(true);
   const handleShowModalB = () => setShowModalB(true);
@@ -20,6 +21,15 @@ const Problem2 = () => {
     setShowModalB(false);
   };
 
+  useEffect(() => {
+    fetch("https://contact.mediusware.com/api/contacts/")
+      .then((response) => response.json())
+      .then((data) => setContacts(data.results));
+  }, []);
+
+  const USContacts = contacts.filter(
+    (contact) => contact.country?.name === "United States"
+  );
   return (
     <>
       <div className="container">
@@ -48,11 +58,13 @@ const Problem2 = () => {
         show={showModalA}
         handleClose={handleCloseModalA}
         switchingModalsB={switchingModalsB}
+        contacts={contacts}
       />
       <ModalB
         show={showModalB}
         handleClose={handleCloseModalB}
         switchingModalsA={switchingModalsA}
+        USContacts={USContacts}
       />
     </>
   );
