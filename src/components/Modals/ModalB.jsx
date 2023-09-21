@@ -16,8 +16,18 @@ const ModalB = ({ show, handleClose, switchingModalsA, USContacts }) => {
         <Button variant="secondary" onClick={switchingModalsA}>
           All Contacts
         </Button>
-        <Button variant="secondary">US Contacts</Button>
-        <Button variant="secondary" onClick={handleClose}>
+        <Button style={{ backgroundColor: "#ff7f50" }} variant="secondary">
+          US Contacts
+        </Button>
+        <Button
+          style={{
+            backgroundColor: "#ffff",
+            borderColor: "#46139f",
+            color: "#000000",
+          }}
+          variant="secondary"
+          onClick={handleClose}
+        >
           Close
         </Button>
       </Modal.Footer>

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import ModalA from "./Modals/ModalA";
 import ModalB from "./Modals/ModalB";
 
 const Problem2 = () => {
+  const navigate = useNavigate();
   const [showModalA, setShowModalA] = useState(false);
   const [showModalB, setShowModalB] = useState(false);
   const [contacts, setContacts] = useState([]);
@@ -30,6 +32,10 @@ const Problem2 = () => {
   const USContacts = contacts.filter(
     (contact) => contact.country?.name === "United States"
   );
+
+  const location = useLocation();
+  // Check the current route and open the modal accordingly
+
   return (
     <>
       <div className="container">
